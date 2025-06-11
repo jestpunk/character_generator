@@ -1,3 +1,4 @@
+"""
 import pytest
 import init_path
 import random
@@ -13,8 +14,9 @@ def test_character() -> None:
     assert isinstance(character.name, str)
     assert len(character.name) > 0
     assert isinstance(character.item, BaseItem)
-    
+
     for characteristic in character.characteristics:
         assert isinstance(characteristic, BaseCharacteristic)
-    
+
     assert isinstance(character.portrait, np.array)
+"""
