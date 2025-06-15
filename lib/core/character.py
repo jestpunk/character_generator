@@ -1,29 +1,31 @@
 # Character, Abilities, Class, Race, Name, Items, Image
+from enum import Enum
 
-classes = {
-    "Barbarian",
-    "Bard",
-    "Cleric",
-    "Druid",
-    "Fighter",
-    "Monk",
-    "Paladin",
-    "Ranger",
-    "Rogue",
-    "Sorcerer",
-    "Warlock",
-    "Wizard",
-}
-races = {
-    "Dwarf",
-    "Elf",
-    "Halfling",
-    "Human",
-    "Dragonborn",
-    "Half-Elf",
-    "Half-Orc",
-    "Tiefling",
-}
+
+class Classes(Enum):
+    BARBARIAN = "Barbarian"
+    BARD = "Bard"
+    CLERIC = "Cleric"
+    DRUID = "Druid"
+    FIGHTER = "Fighter"
+    MONK = "Monk"
+    PALADIN = "Paladin"
+    RANGER = "Ranger"
+    ROGUE = "Rogue"
+    SORCERER = "Sorcerer"
+    WARLOCK = "Warlock"
+    WIZARD = "Wizard"
+
+
+class Races(Enum):
+    DWARF = "Dwarf"
+    ELF = "Elf"
+    HALFLING = "Halfling"
+    HUMAN = "Human"
+    DRAGONBORN = "Dragonborn"
+    HALF_ELF = "Half-Elf"
+    HALF_ORC = "Half-Orc"
+    TIEFLING = "Tiefling"
 
 
 class Character:
@@ -40,7 +42,8 @@ class Character:
         return (
             f"Character\n"
             f"Name: {self.name}\n"
-            f"Class: {self.char_class}\n"
-            f"Race: {self.race}\n"
-            f"Abilities: {self.abilities}"
+            f"Class: {self.char_class.value}\n"
+            f"Race: {self.race.value}\n\n"
+            f"Abilities: {self.abilities}\n"
+            f"Portrait: {self.image}\n"
         )

@@ -20,3 +20,12 @@ def test_character() -> None:
 
     assert isinstance(character.portrait, np.array)
 """
+
+import pytest
+
+from lib import generator
+from lib.core import character
+
+
+def test_generation():
+    assert isinstance(generator.generate(), character.Character)
