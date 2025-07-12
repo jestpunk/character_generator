@@ -1,5 +1,6 @@
 from lib.core import character
 from lib import characteristics
+from lib.name import name_generator
 import random
 
 
@@ -10,6 +11,8 @@ def generate():
     char = character.Character(
         char_class, race, abilities, "blank name", "blank inventory", "blank image"
     )
+    ng = name_generator.NameGenerator(char)
+    char.name = ng.generate()
     return char
 
 
