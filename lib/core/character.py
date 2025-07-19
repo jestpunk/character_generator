@@ -1,6 +1,9 @@
 # Character, Abilities, Class, Race, Name, Items, Image
 from enum import Enum
 import random
+from typing import Optional, Dict
+
+from lib.items import Inventory
 
 
 class Classes(Enum):
@@ -29,17 +32,27 @@ class Races(Enum):
     HALFLING = "Halfling"
     HUMAN = "Human"
     DRAGONBORN = "Dragonborn"
-    HALF_ELF = "Half-Elf"
-    HALF_ORC = "Half-Orc"
+    HALF_ELF = "Half-elf"
+    HALF_ORC = "Half-orc"
     TIEFLING = "Tiefling"
 
 
 class Character:
 
-    def __init__(self, char_class, race, abilities, name, inventory, image):
+    def __init__(
+        self,
+        *,
+        char_class: Classes,
+        race: Races,
+        gender: Gender,
+        abilities,
+        name: Optional[str] = None,
+        inventory: Optional[Inventory] = None,
+        image: Optional[str] = None,
+    ):
         self.char_class = char_class
         self.race = race
-        self.gender = random.choice(list(Gender))
+        self.gender = gender
         self.abilities = abilities
         self.name = name
         self.inventory = inventory

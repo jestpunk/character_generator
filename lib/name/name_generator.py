@@ -1,19 +1,17 @@
 import json
 import random
 
-# filename_in = "elf_names.txt"
-# filename_out = "elf_male_names_data.json"
 
 RELATIVE_PATH_TO_DATA_FOLDER = "data/"
 
 
 class NameGenerator:
-    def __init__(self, character, n=3):
+    def __init__(self, character, n: int = 3):
         self.race = character.race
         self.gender = character.gender
         self.n = n
 
-    def _gather_data(self, txt_filename):
+    def _gather_data(self, txt_filename: str) -> None:
         names_data = {}
         try:
             file_in = open(txt_filename)
@@ -36,39 +34,39 @@ class NameGenerator:
         file_in.close
         self.names_data = names_data
 
-    def _get_txt_filename(self):  # Логично здесь использовать match
+    @staticmethod
+    def _get_txt_filename(race, gender) -> str:
         txt_filename = (
-            str(self.race.value).lower() + "_" + str(self.gender.value).lower() + ".txt"
+            str(race.value).lower() + "_" + str(gender.value).lower() + ".txt"
         )
         txt_filename = RELATIVE_PATH_TO_DATA_FOLDER + txt_filename
         return txt_filename
 
-    def _get_json_filename(self):
+    @staticmethod
+    def _get_json_filename(race, gender, n: int) -> str:
         json_filename = (
-            str(self.race.value).lower()
+            str(race.value).lower()
             + "_"
-            + str(self.gender.value).lower()
+            + str(gender.value).lower()
             + "_"
-            + str(self.n)
+            + str(n)
             + ".json"
         )
         json_filename = RELATIVE_PATH_TO_DATA_FOLDER + json_filename
         return json_filename
 
-    def _save_to_json(
-        self, json_filename
-    ):  # Класть в папку data (относительным путём, чтобы можно было запустить на другом компьютере)
+    def _save_to_json(self, json_filename: str) -> None:
         file_out = open(json_filename, "w")
         json_dump = json.dumps(self.names_data, indent=4)
         file_out.write(json_dump)
         file_out.close()
 
-    def generate(self) -> str:  # Дропаем ошибку если не нашли файл
-        json_filename = self._get_json_filename()
+    def generate(self) -> str:
+        json_filename = NameGenerator._get_json_filename(self.race, self.gender, self.n)
         try:
             file_in = open(json_filename)
         except FileNotFoundError:
-            txt_filename = self._get_txt_filename()
+            txt_filename = NameGenerator._get_txt_filename(self.race, self.gender)
             self._gather_data(txt_filename)
             self._save_to_json(json_filename)
             file_in = open(json_filename, "r")
