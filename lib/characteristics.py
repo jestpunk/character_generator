@@ -49,8 +49,8 @@ races_ability_scores = {
 
 
 class AbilityChart:
-    def __init__(self, char_class, race):
-        self.abilities = defaultdict(int)
+    def __init__(self, char_class: Classes, race: Races):
+        self.abilities: dict = defaultdict(int)
         self.char_class = char_class
         self.race = race
         self.assign()
@@ -61,7 +61,7 @@ class AbilityChart:
             output += ability.value + ": " + str(self.abilities[ability]) + "\n"
         return output
 
-    def assign(self, score=BASE_DISTR_SCORE):
+    def assign(self, score: int = BASE_DISTR_SCORE) -> None:
         for ability in Abilities:
             self.abilities[ability] += BASE_ABILITY_SCORE
         for i in range(score):
@@ -70,7 +70,7 @@ class AbilityChart:
         self.adjust(races_ability_scores[self.race])
         self.adjust(classes_ability_scores[self.char_class])
 
-    def adjust(self, scores):
+    def adjust(self, scores: dict) -> None:
         for ability in scores:
             if ability in self.abilities.keys():
                 self.abilities[ability] += scores[ability]

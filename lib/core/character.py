@@ -1,4 +1,3 @@
-# Character, Abilities, Class, Race, Name, Items, Image
 from enum import Enum
 
 
@@ -17,33 +16,22 @@ class Classes(Enum):
     WIZARD = "Wizard"
 
 
+class Gender(Enum):
+    MALE = "Male"
+    FEMALE = "Female"
+
+
 class Races(Enum):
     DWARF = "Dwarf"
     ELF = "Elf"
     HALFLING = "Halfling"
     HUMAN = "Human"
     DRAGONBORN = "Dragonborn"
-    HALF_ELF = "Half-Elf"
-    HALF_ORC = "Half-Orc"
+    HALF_ELF = "Half-elf"
+    HALF_ORC = "Half-orc"
     TIEFLING = "Tiefling"
 
 
-class Character:
+class BaseCharacter:
 
-    def __init__(self, char_class, race, abilities, name, inventory, image):
-        self.char_class = char_class
-        self.race = race
-        self.abilities = abilities
-        self.name = name
-        self.inventory = inventory
-        self.image = image
-
-    def __str__(self):
-        return (
-            f"Character\n"
-            f"Name: {self.name}\n"
-            f"Class: {self.char_class.value}\n"
-            f"Race: {self.race.value}\n\n"
-            f"Abilities: {self.abilities}\n"
-            f"Portrait: {self.image}\n"
-        )
+    def __init__(self): ...
