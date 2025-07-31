@@ -1,15 +1,16 @@
-from lib.core import character
+from lib.core.character import BaseCharacter, Classes, Gender, Races
+from lib.character import Character
 from lib import characteristics
 from lib.name import name_generator
 import random
 
 
-def generate() -> character.Character:
-    gender = random.choice(list(character.Gender))
-    char_class = random.choice(list(character.Classes))
-    race = random.choice(list(character.Races))
+def generate() -> BaseCharacter:
+    gender = random.choice(list(Gender))
+    char_class = random.choice(list(Classes))
+    race = random.choice(list(Races))
     abilities = characteristics.AbilityChart(char_class, race)
-    char = character.Character(
+    char = Character(
         char_class=char_class,
         race=race,
         gender=gender,
@@ -18,7 +19,7 @@ def generate() -> character.Character:
         inventory=None,
         image=None,
     )
-    ng = name_generator.NameGenerator(char)
+    ng = name_generator.NameGenerator(race, gender)
     char.name = ng.generate()
     return char
 

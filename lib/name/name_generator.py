@@ -1,14 +1,15 @@
 import json
 import random
+from lib.core.character import Races, Gender
 
 
 RELATIVE_PATH_TO_DATA_FOLDER = "data/"
 
 
 class NameGenerator:
-    def __init__(self, character, n: int = 3):
-        self.race = character.race
-        self.gender = character.gender
+    def __init__(self, race: Races, gender: Gender, n: int = 3):
+        self.race = race
+        self.gender = gender
         self.n = n
 
     def _gather_data(self, txt_filename: str) -> None:
