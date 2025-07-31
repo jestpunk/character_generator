@@ -1,7 +1,7 @@
 import pytest
 
 from lib import generator
-from lib.core import character
+from lib import character
 
 
 def test_generation():
